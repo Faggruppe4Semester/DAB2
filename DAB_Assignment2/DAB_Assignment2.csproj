@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200325130648_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200325130648_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200408101353_UpdatedStudentExerciseRelationship.cs" />
+    <Compile Remove="Migrations\20200408101353_UpdatedStudentExerciseRelationship.Designer.cs" />
+    <Compile Remove="Migrations\20200410065227_UpdatedStudentExerciseRelationship.cs" />
+    <Compile Remove="Migrations\20200410065227_UpdatedStudentExerciseRelationship.Designer.cs" />
+    <Compile Remove="Migrations\20200410074452_UpdatedStudentExerciseRelationship.cs" />
+    <Compile Remove="Migrations\20200410074452_UpdatedStudentExerciseRelationship.Designer.cs" />
+    <Compile Remove="Migrations\20200410075800_RemovedTeacherAndCourseFromExercise.cs" />
+    <Compile Remove="Migrations\20200410075800_RemovedTeacherAndCourseFromExercise.Designer.cs" />
+    <Compile Remove="Migrations\20200410102703_ExerciseToStudentNavProperty.cs" />
+    <Compile Remove="Migrations\20200410102703_ExerciseToStudentNavProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200410103752_ExerciseStudentForeignKeyProperty.cs" />
+    <Compile Remove="Migrations\20200410103752_ExerciseStudentForeignKeyProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200410104044_RemovedExerciseToStudentRelation.cs" />
+    <Compile Remove="Migrations\20200410104044_RemovedExerciseToStudentRelation.Designer.cs" />
+    <Compile Remove="Migrations\20200410110829_ExerciseToEverythingRelationIsTheWay.cs" />
+    <Compile Remove="Migrations\20200410110829_ExerciseToEverythingRelationIsTheWay.Designer.cs" />
+    <Compile Remove="Migrations\20200410114408_CourseIDIsNotAutoIncrementAnymore.cs" />
+    <Compile Remove="Migrations\20200410114408_CourseIDIsNotAutoIncrementAnymore.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
