@@ -1,0 +1,6 @@
+Opdater program.cs så shadowtables benyttes og der oprettes assignments.
+Lav readme fil
+Lav videopræsentation.
+Aflever.
+Bestå.
+yeet
