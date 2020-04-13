@@ -39,7 +39,7 @@ namespace DBWebApp.Controllers
 
         // GET api/<controller>/Create/Dabbing/101
         [HttpGet("Create/{courseName}")]
-        public string CreateCourse(string courseName, int courseID)
+        public string CreateCourse(string courseName)
         {
             var course = new Course()
             {
