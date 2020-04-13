@@ -17,8 +17,10 @@ namespace DBWebApp.Controllers
 
         Assignment2Context context = new Assignment2Context();
 
+
+        //Get api/<controller>
         [HttpGet]
-        public List<Assignment> Get()
+        public List<Assignment> GetAllAssignments()
         {
             return context.Assignments.Include(a => a.Course).ToList();
         }

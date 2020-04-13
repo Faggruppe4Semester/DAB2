@@ -19,18 +19,18 @@ namespace DBWebApp.Controllers
         Assignment2Context context = new Assignment2Context();
 
 
-        // GET: api/<controller>
-        [HttpGet]
-        public List<Exercise> GetAllOpenHelpRequests()
-        {
-            return context.Exercises.Include(e => e.Student).Include(e => e.Teacher).Include(e => e.Course).ToList();
-        }
+
 
         // GET api/<controller>/au454545
         [HttpGet("{id}")]
         public List<Exercise> GetHelpRequestFromStudent(string id)
         {
-            return context.Exercises.Include(e => e.Student).Include(e => e.Teacher).Include(e => e.Course).ToList().Where(e => e.StudentAUID == id).ToList();
+            return context.Exercises.Include(e => e.Student)
+                                    .Include(e => e.Teacher)
+                                    .Include(e => e.Course)
+                                    .Where(e => e.StudentAUID == id)
+                                    .Where(e => e.Open == true)
+                                    .ToList();
         }
 
         // Get api/<controller>/Create/John/au454545

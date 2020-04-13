@@ -18,9 +18,9 @@ namespace DBWebApp.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Course> GetAllCourses()
         {
-            return new string[] { "value1", "value2" };
+            return context.Courses.ToList();
         }
 
 

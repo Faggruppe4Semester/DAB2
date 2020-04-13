@@ -39,11 +39,6 @@ namespace DAB_Assignment2.Models
 
             modelBuilder.Entity<Exercise>().HasKey(e => new { e.Lecture, e.Number });
             
-
-
-            
-
-
             modelBuilder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentAUID, sc.CourseID });
 
             modelBuilder.Entity<StudentCourse>()

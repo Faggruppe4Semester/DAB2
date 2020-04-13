@@ -16,6 +16,17 @@ namespace DBWebApp.Controllers
     {
         Assignment2Context context = new Assignment2Context();
 
+        // GET: api/<controller>
+        [HttpGet]
+        public List<Exercise> GetAllExercises()
+        {
+            return context.Exercises.Include(e => e.Student)
+                .Include(e => e.Teacher)
+                .Include(e => e.Course)
+                .ToList();
+        }
+
+
         // GET api/<controller>/AU000000/1
         [HttpGet("{TeacherID}/{courseID}")]
         public List<Exercise> PrintOpenHelpRequest(string TeacherID, int CourseID)
