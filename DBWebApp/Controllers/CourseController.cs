@@ -38,13 +38,12 @@ namespace DBWebApp.Controllers
         }
 
         // GET api/<controller>/Create/Dabbing/101
-        [HttpGet("Create/{courseName}/{courseID}")]
+        [HttpGet("Create/{courseName}")]
         public string CreateCourse(string courseName, int courseID)
         {
             var course = new Course()
             {
-                Name = courseName,
-                CourseID = courseID
+                Name = courseName
             };
 
             using (var transaction = context.Database.BeginTransaction())

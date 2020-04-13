@@ -18,10 +18,12 @@ namespace DBWebApp
 
             using(var db = new Assignment2Context())
             {
-                
+                db.Database.ExecuteSqlCommand("delete from StudentAssignments");
+                db.Database.ExecuteSqlCommand("delete from StudentCourses");
+                db.Database.ExecuteSqlCommand("delete from StudentAssignments");
                 db.Database.ExecuteSqlCommand("delete from Exercises");
-                db.Database.ExecuteSqlCommand("delete from Teachers");
                 db.Database.ExecuteSqlCommand("delete from Courses");
+                db.Database.ExecuteSqlCommand("delete from Teachers");
                 db.Database.ExecuteSqlCommand("delete from Students");
 
 
@@ -53,21 +55,34 @@ namespace DBWebApp
 
                 var course = new Course()
                 {
-                    Name = "Avanceret Løgspark",
-                    CourseID = 1
+                    Name = "Avanceret Løgspark"
                 };
 
                 db.Add(course);
 
                 var course2 = new Course()
                 {
-                    Name = "Matematik",
-                    CourseID = 2
+                    Name = "Matematik"
                 };
                 db.Add(course2);
                 db.SaveChanges();
 
+                db.Add(new StudentCourse() //Add a student to a course
+                {
+                    Active = true,
+                    CourseID = course.CourseID,
+                    Semester = 2,
+                    StudentAUID = student.AUID
+                });
 
+                db.Add(new StudentCourse() //Add another student to the same course
+                {
+                    Active = true,
+                    CourseID = course.CourseID,
+                    StudentAUID = student2.AUID
+                });
+
+                db.SaveChanges();
 
                 Teacher teacher2 = new Teacher()
                 {
@@ -118,6 +133,33 @@ namespace DBWebApp
                     Course = course2
                 };
                 db.Add(E3);
+                db.SaveChanges();
+
+                var A1 = new Assignment()
+                {
+                    CourseID = course.CourseID,
+                    TeacherAUID = teacher1.AUID
+                };
+
+                db.Add(A1);
+                db.SaveChanges();
+
+                var A1Students = new StudentAssignment()
+                {
+                    AssignmentID = A1.AssignmentID,
+                    StudentAUID = student.AUID
+                };
+
+                db.Add(A1Students);
+                
+                var A1Students2 = new StudentAssignment()
+                {
+                    AssignmentID = A1.AssignmentID,
+                    StudentAUID = student2.AUID
+                };
+
+                db.Add(A1Students2);
+
                 db.SaveChanges();
             }
 

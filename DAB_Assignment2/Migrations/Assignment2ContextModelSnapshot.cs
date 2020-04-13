@@ -43,7 +43,9 @@ namespace DAB_Assignment2.Migrations
             modelBuilder.Entity("DAB_Assignment2.Models.Course", b =>
                 {
                     b.Property<int>("CourseID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

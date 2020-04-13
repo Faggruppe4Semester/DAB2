@@ -29,7 +29,7 @@ namespace DAB_Assignment2.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Assignment2;User ID=SA;Password=Password1!;");
+                optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Assignment2;User ID=SA;Password=MarkMusen26353944;");
             }
         }
 

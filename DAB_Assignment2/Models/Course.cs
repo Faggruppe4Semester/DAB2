@@ -9,7 +9,7 @@ namespace DAB_Assignment2.Models
     public class Course
     {
         public string Name { get; set; }
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        
         public int CourseID { get; set; }
 
         public List<StudentCourse> StudentCourses { get; set; }

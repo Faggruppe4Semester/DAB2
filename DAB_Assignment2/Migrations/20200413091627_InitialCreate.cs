@@ -10,7 +10,8 @@ namespace DAB_Assignment2.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    CourseID = table.Column<int>(nullable: false),
+                    CourseID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -50,7 +51,7 @@ namespace DAB_Assignment2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentCourse",
+                name: "StudentCourses",
                 columns: table => new
                 {
                     StudentAUID = table.Column<string>(nullable: false),
@@ -60,15 +61,15 @@ namespace DAB_Assignment2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentCourse", x => new { x.StudentAUID, x.CourseID });
+                    table.PrimaryKey("PK_StudentCourses", x => new { x.StudentAUID, x.CourseID });
                     table.ForeignKey(
-                        name: "FK_StudentCourse_Courses_CourseID",
+                        name: "FK_StudentCourses_Courses_CourseID",
                         column: x => x.CourseID,
                         principalTable: "Courses",
                         principalColumn: "CourseID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentCourse_Students_StudentAUID",
+                        name: "FK_StudentCourses_Students_StudentAUID",
                         column: x => x.StudentAUID,
                         principalTable: "Students",
                         principalColumn: "AUID",
@@ -108,6 +109,7 @@ namespace DAB_Assignment2.Migrations
                     Lecture = table.Column<string>(nullable: false),
                     Number = table.Column<int>(nullable: false),
                     Help_Where = table.Column<string>(nullable: true),
+                    Open = table.Column<bool>(nullable: false),
                     StudentAUID = table.Column<string>(nullable: true),
                     TeacherAUID = table.Column<string>(nullable: true),
                     CourseID = table.Column<int>(nullable: false)
@@ -136,7 +138,7 @@ namespace DAB_Assignment2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentAssignment",
+                name: "StudentAssignments",
                 columns: table => new
                 {
                     StudentAUID = table.Column<string>(nullable: false),
@@ -144,15 +146,15 @@ namespace DAB_Assignment2.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentAssignment", x => new { x.StudentAUID, x.AssignmentID });
+                    table.PrimaryKey("PK_StudentAssignments", x => new { x.StudentAUID, x.AssignmentID });
                     table.ForeignKey(
-                        name: "FK_StudentAssignment_Assignments_AssignmentID",
+                        name: "FK_StudentAssignments_Assignments_AssignmentID",
                         column: x => x.AssignmentID,
                         principalTable: "Assignments",
                         principalColumn: "AssignmentID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentAssignment_Students_StudentAUID",
+                        name: "FK_StudentAssignments_Students_StudentAUID",
                         column: x => x.StudentAUID,
                         principalTable: "Students",
                         principalColumn: "AUID",
@@ -185,13 +187,13 @@ namespace DAB_Assignment2.Migrations
                 column: "TeacherAUID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentAssignment_AssignmentID",
-                table: "StudentAssignment",
+                name: "IX_StudentAssignments_AssignmentID",
+                table: "StudentAssignments",
                 column: "AssignmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentCourse_CourseID",
-                table: "StudentCourse",
+                name: "IX_StudentCourses_CourseID",
+                table: "StudentCourses",
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
@@ -206,10 +208,10 @@ namespace DAB_Assignment2.Migrations
                 name: "Exercises");
 
             migrationBuilder.DropTable(
-                name: "StudentAssignment");
+                name: "StudentAssignments");
 
             migrationBuilder.DropTable(
-                name: "StudentCourse");
+                name: "StudentCourses");
 
             migrationBuilder.DropTable(
                 name: "Assignments");

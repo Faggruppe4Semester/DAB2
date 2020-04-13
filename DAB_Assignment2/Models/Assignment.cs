@@ -8,16 +8,15 @@ namespace DAB_Assignment2.Models
 {
     public class Assignment
     {
+        public int AssignmentID { get; set; }
 
-
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CourseID { get; set; }
         public Course Course { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string TeacherAUID { get; set; }
         public Teacher Teacher { get; set; }
-
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int AssignmentID { get; set; }
 
         public List<StudentAssignment> StudentAssignments { get; set; }
 

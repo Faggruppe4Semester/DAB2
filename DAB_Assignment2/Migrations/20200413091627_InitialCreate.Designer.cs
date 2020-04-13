@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAB_Assignment2.Migrations
 {
     [DbContext(typeof(Assignment2Context))]
-    [Migration("20200411083947_AddedShadowTables")]
-    partial class AddedShadowTables
+    [Migration("20200413091627_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,9 @@ namespace DAB_Assignment2.Migrations
             modelBuilder.Entity("DAB_Assignment2.Models.Course", b =>
                 {
                     b.Property<int>("CourseID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

@@ -9,6 +9,7 @@ namespace DAB_Assignment2.Models
     public class Student
     {
         public string Name { get; set; }
+
         [Key]
         public string AUID { get; set; }
 

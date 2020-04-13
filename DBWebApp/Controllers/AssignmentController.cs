@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DAB_Assignment2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,13 +17,18 @@ namespace DBWebApp.Controllers
 
         Assignment2Context context = new Assignment2Context();
 
+        [HttpGet]
+        public List<Assignment> Get()
+        {
+            return context.Assignments.Include(a => a.Course).ToList();
+        }
+
         // GET api/<controller>/Create/420/101/au111000
-        [HttpGet("Create/{AssignmentID}/{CourseID}/{TeacherID}")]
-        public string CreateAssignment(int assignmentID, int courseID, string teacherID)
+        [HttpGet("Create/{CourseID}/{TeacherID}")]
+        public string CreateAssignment(int courseID, string teacherID)
         {
             var assignment = new Assignment()
             {
-                AssignmentID = assignmentID,
                 TeacherAUID = teacherID,
                 CourseID = courseID
             };
