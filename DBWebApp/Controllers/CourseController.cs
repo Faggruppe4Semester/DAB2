@@ -32,12 +32,14 @@ namespace DBWebApp.Controllers
             var allExercises = context.Exercises.Where(e => e.CourseID == courseID);
             var assignmentHelpRequests = context.HelpRequests.Where(h => h.Assignment.CourseID == courseID);
 
-
             
-            int all = allExercises.Count() + assignmentHelpRequests.Count();
-            int closed = allExercises.Count(e => e.Open == false) + assignmentHelpRequests.Count(h => h.Open == false);
+            int exerciseCount = allExercises.Count();
+            int assignmentCount = assignmentHelpRequests.Count();
+            int exerciseClosed = allExercises.Count(e => e.Open == false);
+            int assinmentClosed = assignmentHelpRequests.Count(h => h.Open == false);
 
-            return $"Of {all} helprequests in this course, {closed} have been closed.";
+            return $"Of {exerciseCount} help-requests for exercises in this course, {exerciseClosed} have been closed. \r\n" +
+                   $"Of {assignmentCount} help-requests for assignments in this course, {assinmentClosed} have been closed";
         }
 
         // GET api/<controller>/Create/Dabbing/101
@@ -61,7 +63,7 @@ namespace DBWebApp.Controllers
                 catch (Exception e)
                 {
                     transaction.Rollback();
-                    return "Course could not be added. This combination of name and ID already exitst";
+                    return "Course could not be added. This combination of name and ID already exists";
                 }
             }
         }
