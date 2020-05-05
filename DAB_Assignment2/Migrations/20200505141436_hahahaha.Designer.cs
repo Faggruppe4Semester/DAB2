@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAB_Assignment2.Migrations
 {
     [DbContext(typeof(Assignment2Context))]
-    [Migration("20200413091627_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200505141436_hahahaha")]
+    partial class hahahaha
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,6 +91,24 @@ namespace DAB_Assignment2.Migrations
                     b.ToTable("Exercises");
                 });
 
+            modelBuilder.Entity("DAB_Assignment2.Models.HelpRequest", b =>
+                {
+                    b.Property<string>("StudentAUID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AssignmentID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Open")
+                        .HasColumnType("bit");
+
+                    b.HasKey("StudentAUID", "AssignmentID");
+
+                    b.HasIndex("AssignmentID");
+
+                    b.ToTable("HelpRequests");
+                });
+
             modelBuilder.Entity("DAB_Assignment2.Models.Student", b =>
                 {
                     b.Property<string>("AUID")
@@ -102,21 +120,6 @@ namespace DAB_Assignment2.Migrations
                     b.HasKey("AUID");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("DAB_Assignment2.Models.HelpRequest", b =>
-                {
-                    b.Property<string>("StudentAUID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AssignmentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentAUID", "AssignmentID");
-
-                    b.HasIndex("AssignmentID");
-
-                    b.ToTable("HelpRequests");
                 });
 
             modelBuilder.Entity("DAB_Assignment2.Models.StudentCourse", b =>
@@ -180,7 +183,7 @@ namespace DAB_Assignment2.Migrations
                         .IsRequired();
 
                     b.HasOne("DAB_Assignment2.Models.Student", "Student")
-                        .WithMany()
+                        .WithMany("Exercises")
                         .HasForeignKey("StudentAUID");
 
                     b.HasOne("DAB_Assignment2.Models.Teacher", "Teacher")
@@ -191,7 +194,7 @@ namespace DAB_Assignment2.Migrations
             modelBuilder.Entity("DAB_Assignment2.Models.HelpRequest", b =>
                 {
                     b.HasOne("DAB_Assignment2.Models.Assignment", "Assignment")
-                        .WithMany("HelpRequests")
+                        .WithMany("StudentAssignments")
                         .HasForeignKey("AssignmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

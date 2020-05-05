@@ -34,6 +34,12 @@
     <Compile Remove="Migrations\20200411083947_AddedShadowTables.Designer.cs" />
     <Compile Remove="Migrations\20200413090856_AddedAutoIDForCourseAndAssignment.cs" />
     <Compile Remove="Migrations\20200413090856_AddedAutoIDForCourseAndAssignment.Designer.cs" />
+    <Compile Remove="Migrations\20200413091627_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200413091627_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200505131450_FixedShit.cs" />
+    <Compile Remove="Migrations\20200505131450_FixedShit.Designer.cs" />
+    <Compile Remove="Migrations\20200505131904_Whooo.cs" />
+    <Compile Remove="Migrations\20200505131904_Whooo.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

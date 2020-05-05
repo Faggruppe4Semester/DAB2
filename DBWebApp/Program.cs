@@ -108,7 +108,8 @@ namespace DBWebApp
                     Help_Where = "Auditoriet",
                     Student = student,
                     Teacher = teacher1,
-                    Course = course
+                    Course = course,
+                    Open = true
                 };
                 db.Add(E1);
 
@@ -119,7 +120,8 @@ namespace DBWebApp
                     Help_Where = "PBA",
                     Student = student,
                     Teacher = teacher1,
-                    Course = course
+                    Course = course,
+                    Open = true
                 };
                 db.Add(E2);
 

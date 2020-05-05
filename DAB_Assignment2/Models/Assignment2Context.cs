@@ -29,7 +29,7 @@ namespace DAB_Assignment2.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Assignment2;User ID=SA;Password=MarkMusen26353944;");
+                optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Assignment2;User ID=SA;Password=Password1234!;");
             }
         }
 
@@ -38,9 +38,9 @@ namespace DAB_Assignment2.Models
             OnModelCreatingPartial(modelBuilder);
 
             modelBuilder.Entity<Exercise>().HasKey(e => new { e.Lecture, e.Number });
-            modelBuilder.Entity<Exercise>().HasOne(e => e.Student)
-                .WithMany(s => s.Exercises)
-                .HasForeignKey(e => e.StudentAUID);
+            //modelBuilder.Entity<Exercise>().HasOne(e => e.Student)
+            //    .WithMany(s => s.Exercises)
+            //    .HasForeignKey(e => e.StudentAUID);
 
             modelBuilder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentAUID, sc.CourseID });
 

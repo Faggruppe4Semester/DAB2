@@ -2,7 +2,7 @@
 
 namespace DAB_Assignment2.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class hahahaha : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -142,19 +142,20 @@ namespace DAB_Assignment2.Migrations
                 columns: table => new
                 {
                     StudentAUID = table.Column<string>(nullable: false),
-                    AssignmentID = table.Column<int>(nullable: false)
+                    AssignmentID = table.Column<int>(nullable: false),
+                    Open = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentAssignments", x => new { x.StudentAUID, x.AssignmentID });
+                    table.PrimaryKey("PK_HelpRequests", x => new { x.StudentAUID, x.AssignmentID });
                     table.ForeignKey(
-                        name: "FK_StudentAssignments_Assignments_AssignmentID",
+                        name: "FK_HelpRequests_Assignments_AssignmentID",
                         column: x => x.AssignmentID,
                         principalTable: "Assignments",
                         principalColumn: "AssignmentID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentAssignments_Students_StudentAUID",
+                        name: "FK_HelpRequests_Students_StudentAUID",
                         column: x => x.StudentAUID,
                         principalTable: "Students",
                         principalColumn: "AUID",
@@ -187,7 +188,7 @@ namespace DAB_Assignment2.Migrations
                 column: "TeacherAUID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentAssignments_AssignmentID",
+                name: "IX_HelpRequests_AssignmentID",
                 table: "HelpRequests",
                 column: "AssignmentID");
 

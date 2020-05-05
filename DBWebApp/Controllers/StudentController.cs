@@ -20,7 +20,7 @@ namespace DBWebApp.Controllers
 
         // GET api/<controller>/au454545
         [HttpGet("{id}")]
-        public List<Object> GetHelpRequestFromStudent(string id)
+        public List<Exercise> GetHelpRequestFromStudent(string id)
         {
             var exerciseRequests  = context.Exercises.Include(e => e.Student)
                 .Include(e => e.Teacher)
@@ -28,17 +28,16 @@ namespace DBWebApp.Controllers
                 .Where(e => e.StudentAUID == id)
                 .Where(e => e.Open == true)
                 .ToList();
-            var assignmnetRequests = context.HelpRequests.Include(h => h.Student)
-                .Include(h => h.Assignment)
-                .ThenInclude(a => a.Course)
-                .Where(h => h.StudentAUID == id)
-                .Where(h => h.Open == true)
-                .ToList();
+            //var assignmnetRequests = context.HelpRequests.Include(h => h.Student)
+                //.Include(h => h.Assignment)
+                //.Where(h => h.StudentAUID == id)
+                //.Where(h => h.Open == true)
+                //.ToList();
 
             List<Object> allRequests = (from x in exerciseRequests select (Object) x).ToList();
-            allRequests.AddRange((from x in assignmnetRequests select (Object)x).ToList());
+            //allRequests.AddRange((from x in assignmnetRequests select (Object)x).ToList());
 
-            return allRequests;
+            return exerciseRequests;
         }
 
         // Get api/<controller>/Create/John/au454545
