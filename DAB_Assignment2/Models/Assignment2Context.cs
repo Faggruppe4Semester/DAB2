@@ -38,9 +38,9 @@ namespace DAB_Assignment2.Models
             OnModelCreatingPartial(modelBuilder);
 
             modelBuilder.Entity<Exercise>().HasKey(e => new { e.Lecture, e.Number });
-            //modelBuilder.Entity<Exercise>().HasOne(e => e.Student)
-            //    .WithMany(s => s.Exercises)
-            //    .HasForeignKey(e => e.StudentAUID);
+            modelBuilder.Entity<Exercise>().HasOne(e => e.Student)
+                .WithMany(s => s.Exercises)
+                .HasForeignKey(e => e.StudentAUID);
 
             modelBuilder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentAUID, sc.CourseID });
 
