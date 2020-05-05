@@ -27,12 +27,15 @@ namespace DBWebApp.Controllers
 
         // GET api/<controller>/Stats/101
         [HttpGet("Stats/{CourseID}")]
-        public string Stats(int CourseID)
+        public string Stats(int courseID)
         {
-            var allExercises = context.Exercises.Where(e => e.CourseID == CourseID);
+            var allExercises = context.Exercises.Where(e => e.CourseID == courseID);
+            var assignmentHelpRequests = context.HelpRequests.Where(h => h.Assignment.CourseID == courseID);
 
-            int all = allExercises.Count();
-            int closed = allExercises.Where(e => e.Open == false).Count();
+
+            
+            int all = allExercises.Count() + assignmentHelpRequests.Count();
+            int closed = allExercises.Count(e => e.Open == false) + assignmentHelpRequests.Count(h => h.Open == false);
 
             return $"Of {all} helprequests in this course, {closed} have been closed.";
         }

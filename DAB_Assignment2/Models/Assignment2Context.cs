@@ -13,7 +13,7 @@ namespace DAB_Assignment2.Models
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<StudentCourse> StudentCourses { get; set; }
-        public DbSet<StudentAssignment> StudentAssignments { get; set; }
+        public DbSet<HelpRequest> HelpRequests { get; set; }
 
         public Assignment2Context()
         {
@@ -38,7 +38,10 @@ namespace DAB_Assignment2.Models
             OnModelCreatingPartial(modelBuilder);
 
             modelBuilder.Entity<Exercise>().HasKey(e => new { e.Lecture, e.Number });
-            
+            modelBuilder.Entity<Exercise>().HasOne(e => e.Student)
+                .WithMany(s => s.Exercises)
+                .HasForeignKey(e => e.StudentAUID);
+
             modelBuilder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentAUID, sc.CourseID });
 
             modelBuilder.Entity<StudentCourse>()
@@ -51,14 +54,14 @@ namespace DAB_Assignment2.Models
                 .WithMany(c => c.StudentCourses)
                 .HasForeignKey(sc => sc.CourseID);
 
-            modelBuilder.Entity<StudentAssignment>().HasKey(sa => new { sa.StudentAUID, sa.AssignmentID });
+            modelBuilder.Entity<HelpRequest>().HasKey(sa => new { sa.StudentAUID, sa.AssignmentID });
 
-            modelBuilder.Entity<StudentAssignment>()
+            modelBuilder.Entity<HelpRequest>()
                 .HasOne(sa => sa.Student)
-                .WithMany(s => s.StudentAssignments)
+                .WithMany(s => s.HelpRequests)
                 .HasForeignKey(sa => sa.StudentAUID);
 
-            modelBuilder.Entity<StudentAssignment>()
+            modelBuilder.Entity<HelpRequest>()
                 .HasOne(sa => sa.Assignment)
                 .WithMany(a => a.StudentAssignments)
                 .HasForeignKey(sa => sa.AssignmentID);

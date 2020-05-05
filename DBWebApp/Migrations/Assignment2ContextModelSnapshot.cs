@@ -99,7 +99,7 @@ namespace DBWebApp.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("DBWebApp.Models.StudentAssignment", b =>
+            modelBuilder.Entity("DBWebApp.Models.HelpRequest", b =>
                 {
                     b.Property<string>("StudentAUID")
                         .HasColumnType("nvarchar(450)");
@@ -111,7 +111,7 @@ namespace DBWebApp.Migrations
 
                     b.HasIndex("AssignmentID");
 
-                    b.ToTable("StudentAssignment");
+                    b.ToTable("HelpRequest");
                 });
 
             modelBuilder.Entity("DBWebApp.Models.StudentCourse", b =>
@@ -183,16 +183,16 @@ namespace DBWebApp.Migrations
                         .HasForeignKey("TeacherAUID");
                 });
 
-            modelBuilder.Entity("DBWebApp.Models.StudentAssignment", b =>
+            modelBuilder.Entity("DBWebApp.Models.HelpRequest", b =>
                 {
                     b.HasOne("DBWebApp.Models.Assignment", "Assignment")
-                        .WithMany("StudentAssignments")
+                        .WithMany("HelpRequests")
                         .HasForeignKey("AssignmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DBWebApp.Models.Student", "Student")
-                        .WithMany("StudentAssignments")
+                        .WithMany("HelpRequests")
                         .HasForeignKey("StudentAUID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

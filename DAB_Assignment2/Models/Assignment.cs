@@ -18,13 +18,14 @@ namespace DAB_Assignment2.Models
         public string TeacherAUID { get; set; }
         public Teacher Teacher { get; set; }
 
-        public List<StudentAssignment> StudentAssignments { get; set; }
+        public List<HelpRequest> StudentAssignments { get; set; }
 
 
     }
 
-    public class StudentAssignment
+    public class HelpRequest
     {
+        public bool Open { get; set; }
         public string StudentAUID { get; set; }
         public Student Student { get; set; }
 

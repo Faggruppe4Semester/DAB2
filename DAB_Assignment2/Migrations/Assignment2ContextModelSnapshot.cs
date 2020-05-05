@@ -102,7 +102,7 @@ namespace DAB_Assignment2.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("DAB_Assignment2.Models.StudentAssignment", b =>
+            modelBuilder.Entity("DAB_Assignment2.Models.HelpRequest", b =>
                 {
                     b.Property<string>("StudentAUID")
                         .HasColumnType("nvarchar(450)");
@@ -114,7 +114,7 @@ namespace DAB_Assignment2.Migrations
 
                     b.HasIndex("AssignmentID");
 
-                    b.ToTable("StudentAssignments");
+                    b.ToTable("HelpRequests");
                 });
 
             modelBuilder.Entity("DAB_Assignment2.Models.StudentCourse", b =>
@@ -186,16 +186,16 @@ namespace DAB_Assignment2.Migrations
                         .HasForeignKey("TeacherAUID");
                 });
 
-            modelBuilder.Entity("DAB_Assignment2.Models.StudentAssignment", b =>
+            modelBuilder.Entity("DAB_Assignment2.Models.HelpRequest", b =>
                 {
                     b.HasOne("DAB_Assignment2.Models.Assignment", "Assignment")
-                        .WithMany("StudentAssignments")
+                        .WithMany("HelpRequests")
                         .HasForeignKey("AssignmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAB_Assignment2.Models.Student", "Student")
-                        .WithMany("StudentAssignments")
+                        .WithMany("HelpRequests")
                         .HasForeignKey("StudentAUID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

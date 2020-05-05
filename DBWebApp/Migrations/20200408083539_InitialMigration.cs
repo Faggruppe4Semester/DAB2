@@ -137,7 +137,7 @@ namespace DBWebApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentAssignment",
+                name: "HelpRequest",
                 columns: table => new
                 {
                     StudentAUID = table.Column<string>(nullable: false),
@@ -187,7 +187,7 @@ namespace DBWebApp.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentAssignment_AssignmentID",
-                table: "StudentAssignment",
+                table: "HelpRequest",
                 column: "AssignmentID");
 
             migrationBuilder.CreateIndex(
@@ -207,7 +207,7 @@ namespace DBWebApp.Migrations
                 name: "Exercises");
 
             migrationBuilder.DropTable(
-                name: "StudentAssignment");
+                name: "HelpRequest");
 
             migrationBuilder.DropTable(
                 name: "StudentCourse");

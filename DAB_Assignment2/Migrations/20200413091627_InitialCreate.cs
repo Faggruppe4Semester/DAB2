@@ -138,7 +138,7 @@ namespace DAB_Assignment2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentAssignments",
+                name: "HelpRequests",
                 columns: table => new
                 {
                     StudentAUID = table.Column<string>(nullable: false),
@@ -188,7 +188,7 @@ namespace DAB_Assignment2.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentAssignments_AssignmentID",
-                table: "StudentAssignments",
+                table: "HelpRequests",
                 column: "AssignmentID");
 
             migrationBuilder.CreateIndex(
@@ -208,7 +208,7 @@ namespace DAB_Assignment2.Migrations
                 name: "Exercises");
 
             migrationBuilder.DropTable(
-                name: "StudentAssignments");
+                name: "HelpRequests");
 
             migrationBuilder.DropTable(
                 name: "StudentCourses");

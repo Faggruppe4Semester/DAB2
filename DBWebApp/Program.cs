@@ -18,9 +18,9 @@ namespace DBWebApp
 
             using(var db = new Assignment2Context())
             {
-                db.Database.ExecuteSqlCommand("delete from StudentAssignments");
+                db.Database.ExecuteSqlCommand("delete from HelpRequests");
                 db.Database.ExecuteSqlCommand("delete from StudentCourses");
-                db.Database.ExecuteSqlCommand("delete from StudentAssignments");
+                db.Database.ExecuteSqlCommand("delete from HelpRequests");
                 db.Database.ExecuteSqlCommand("delete from Exercises");
                 db.Database.ExecuteSqlCommand("delete from Courses");
                 db.Database.ExecuteSqlCommand("delete from Teachers");
@@ -144,7 +144,7 @@ namespace DBWebApp
                 db.Add(A1);
                 db.SaveChanges();
 
-                var A1Students = new StudentAssignment()
+                var A1Students = new HelpRequest()
                 {
                     AssignmentID = A1.AssignmentID,
                     StudentAUID = student.AUID
@@ -152,7 +152,7 @@ namespace DBWebApp
 
                 db.Add(A1Students);
                 
-                var A1Students2 = new StudentAssignment()
+                var A1Students2 = new HelpRequest()
                 {
                     AssignmentID = A1.AssignmentID,
                     StudentAUID = student2.AUID

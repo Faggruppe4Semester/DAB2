@@ -56,7 +56,7 @@ namespace DBWebApp.Controllers
         [HttpGet("AddStudent/{AssignmentID}/{studentID}")]
         public string AddStudent(int assignmentID, string studentID)
         {
-            var sa = new StudentAssignment()
+            var sa = new HelpRequest()
             {
                 AssignmentID = assignmentID,
                 StudentAUID = studentID

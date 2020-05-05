@@ -13,10 +13,10 @@ namespace DAB_Assignment2.Models
         [Key]
         public string AUID { get; set; }
 
-        
 
+        public List<Exercise> Exercises { get; set; }
         public List<StudentCourse> StudentCourses { get; set; }
-        public List<StudentAssignment> StudentAssignments { get; set; }
+        public List<HelpRequest> HelpRequests { get; set; }
 
     }
 }
