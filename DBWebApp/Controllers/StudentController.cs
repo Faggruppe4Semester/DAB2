@@ -22,13 +22,15 @@ namespace DBWebApp.Controllers
         [HttpGet("{id}")]
         public List<Object> GetHelpRequestFromStudent(string id)
         {
-            var exerciseRequests  = context.Exercises.Include(e => e.Student)
+            var exerciseRequests  = context.Exercises
+                .Include(e => e.Student)
                 .Include(e => e.Teacher)
                 .Include(e => e.Course)
                 .Where(e => e.StudentAUID == id)
                 .Where(e => e.Open == true)
                 .ToList();
-            var assignmnetRequests = context.HelpRequests.Include(h => h.Student)
+            var assignmnetRequests = context.HelpRequests
+                .Include(h => h.Student)
                 .Include(h => h.Assignment)
                 .Where(h => h.StudentAUID == id)
                 .Where(h => h.Open == true)

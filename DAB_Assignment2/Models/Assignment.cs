@@ -18,7 +18,7 @@ namespace DAB_Assignment2.Models
         public string TeacherAUID { get; set; }
         public Teacher Teacher { get; set; }
 
-        public List<HelpRequest> StudentAssignments { get; set; }
+        public List<HelpRequest> HelpRequests { get; set; }
 
 
     }

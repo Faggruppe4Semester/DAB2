@@ -63,7 +63,7 @@ namespace DAB_Assignment2.Models
 
             modelBuilder.Entity<HelpRequest>()
                 .HasOne(sa => sa.Assignment)
-                .WithMany(a => a.StudentAssignments)
+                .WithMany(a => a.HelpRequests)
                 .HasForeignKey(sa => sa.AssignmentID);
         }
 

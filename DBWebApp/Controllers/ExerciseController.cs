@@ -27,19 +27,6 @@ namespace DBWebApp.Controllers
         }
 
 
-        // GET api/<controller>/AU000000/1
-        [HttpGet("{TeacherID}/{courseID}")]
-        public List<Exercise> PrintOpenHelpRequest(string TeacherID, int CourseID)
-        {
-            return context.Exercises
-                .Include(e => e.Student)
-                .Where(e => CourseID == e.CourseID)
-                .Where(e => TeacherID.ToUpper() == e.TeacherAUID.ToUpper())
-                .Where(e => e.Open == true)
-                .ToList();
-        }
-
-
         // GET api/<controller>/Create/Uge2/1/PBA/1/au123321/au987456/2
         [HttpGet("Create/{Lecture}/{Number}/{Where}/{open}/{TeacherID}/{studentID}/{CourseID}")]
         public string CreateExercise(string lecture, int number, string where, bool open, string teacherID, string studentID, int courseID)

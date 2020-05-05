@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAB_Assignment2.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -40,6 +41,29 @@ namespace DBWebApp.Controllers
                     return "Teacher could not be added. Teacher with this AUID already exists.";
                 }
             }
+        }
+
+        // GET api/<controller>/AU000000/1
+        [HttpGet("{TeacherID}/{courseID}")]
+        public List<Object> PrintOpenHelpRequest(string TeacherID, int CourseID)
+        {
+            var exerciseRequests = context.Exercises
+                .Include(e => e.Student)
+                .Where(e => CourseID == e.CourseID)
+                .Where(e => TeacherID.ToUpper() == e.TeacherAUID.ToUpper())
+                .Where(e => e.Open == true)
+                .ToList();
+
+            var assignmentRequests = context.Assignments
+                .Where(a => a.CourseID == CourseID && a.TeacherAUID.ToUpper() == TeacherID.ToUpper())
+                .Include(a => a.HelpRequests)
+                .ThenInclude(h => h.Open == true)
+                .ToList();
+
+            List<Object> allRequests = (from x in exerciseRequests select (Object)x).ToList();
+            allRequests.AddRange((from x in assignmentRequests select (Object)x).ToList());
+
+            return allRequests;
         }
     }
 }

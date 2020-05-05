@@ -194,7 +194,7 @@ namespace DAB_Assignment2.Migrations
             modelBuilder.Entity("DAB_Assignment2.Models.HelpRequest", b =>
                 {
                     b.HasOne("DAB_Assignment2.Models.Assignment", "Assignment")
-                        .WithMany("StudentAssignments")
+                        .WithMany("HelpRequests")
                         .HasForeignKey("AssignmentID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
