@@ -18,19 +18,27 @@ namespace DBWebApp.Controllers
     {
         Assignment2Context context = new Assignment2Context();
 
-
-
-
         // GET api/<controller>/au454545
         [HttpGet("{id}")]
-        public List<Exercise> GetHelpRequestFromStudent(string id)
+        public List<Object> GetHelpRequestFromStudent(string id)
         {
-            return context.Exercises.Include(e => e.Student)
-                                    .Include(e => e.Teacher)
-                                    .Include(e => e.Course)
-                                    .Where(e => e.StudentAUID == id)
-                                    .Where(e => e.Open == true)
-                                    .ToList();
+            var exerciseRequests  = context.Exercises.Include(e => e.Student)
+                .Include(e => e.Teacher)
+                .Include(e => e.Course)
+                .Where(e => e.StudentAUID == id)
+                .Where(e => e.Open == true)
+                .ToList();
+            var assignmnetRequests = context.HelpRequests.Include(h => h.Student)
+                .Include(h => h.Assignment)
+                .ThenInclude(a => a.Course)
+                .Where(h => h.StudentAUID == id)
+                .Where(h => h.Open == true)
+                .ToList();
+
+            List<Object> allRequests = (from x in exerciseRequests select (Object) x).ToList();
+            allRequests.AddRange((from x in assignmnetRequests select (Object)x).ToList());
+
+            return allRequests;
         }
 
         // Get api/<controller>/Create/John/au454545
@@ -57,6 +65,59 @@ namespace DBWebApp.Controllers
                     transaction.Rollback();
                     return "Student could not be added. Student with this AUID already exists.";
                 }
+            }
+        }
+
+        [HttpGet("CreateHelpRequest/{studentId}/{assignmentId}")]
+        public string CreateHelpRequest(string studentId, int assignmentId)
+        {
+            var student = context.Students.FirstOrDefault(s => s.AUID == studentId);
+            var assignment = context.Assignments.FirstOrDefault(a => a.AssignmentID == assignmentId);
+
+            var request = new HelpRequest()
+            {
+                Open = true,
+                Assignment = assignment,
+                Student = student
+            };
+
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    context.Add(request);
+                    context.SaveChanges();
+                    transaction.Commit();
+                    return "Help-request created";
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return "Failed creating request, request possibly already exists";
+                }
+            }
+        }
+
+        [HttpGet("UpdateHelpRequest/{studentId}/{assignmentId}/{status}")]
+        public string UpdateHelpRequest(string studentId,int assignmentId, bool status)
+        {
+            using (var transaction = context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var helpRequest = context.HelpRequests.FirstOrDefault(hr =>
+                        hr.StudentAUID == studentId && hr.AssignmentID == assignmentId);
+                    if (helpRequest != null) helpRequest.Open = status;
+                    context.SaveChanges();
+                    transaction.Commit();
+                    return $"Changed status of request to {status}";
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return "Failed changing status of request";
+                }
+
             }
         }
 
