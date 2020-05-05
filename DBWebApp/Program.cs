@@ -146,6 +146,7 @@ namespace DBWebApp
 
                 var A1Students = new HelpRequest()
                 {
+                    Open = true,
                     AssignmentID = A1.AssignmentID,
                     StudentAUID = student.AUID
                 };
@@ -154,6 +155,7 @@ namespace DBWebApp
                 
                 var A1Students2 = new HelpRequest()
                 {
+                    Open = true,
                     AssignmentID = A1.AssignmentID,
                     StudentAUID = student2.AUID
                 };
