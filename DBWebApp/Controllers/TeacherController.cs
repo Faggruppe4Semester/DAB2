@@ -57,7 +57,7 @@ namespace DBWebApp.Controllers
             var assignmentRequests = context.Assignments
                 .Where(a => a.CourseID == CourseID && a.TeacherAUID.ToUpper() == TeacherID.ToUpper())
                 .Include(a => a.HelpRequests)
-                .ThenInclude(h => h.Open == true)
+                .Where(a => a.HelpRequests.Select(a => a.Open))
                 .ToList();
 
             List<Object> allRequests = (from x in exerciseRequests select (Object)x).ToList();
