@@ -19,20 +19,20 @@ namespace DBWebApp.Controllers
         Assignment2Context context = new Assignment2Context();
 
         // GET api/<controller>/au454545
-        [HttpGet("{id}")]
-        public List<Object> GetHelpRequestFromStudent(string id)
+        [HttpGet("{StudentId}")]
+        public List<Object> GetHelpRequestFromStudent(string StudentId)
         {
             var exerciseRequests  = context.Exercises
                 .Include(e => e.Student)
                 .Include(e => e.Teacher)
                 .Include(e => e.Course)
-                .Where(e => e.StudentAUID == id)
+                .Where(e => e.StudentAUID == StudentId)
                 .Where(e => e.Open == true)
                 .ToList();
             var assignmnetRequests = context.HelpRequests
                 .Include(h => h.Student)
                 .Include(h => h.Assignment)
-                .Where(h => h.StudentAUID == id)
+                .Where(h => h.StudentAUID == StudentId)
                 .Where(h => h.Open == true)
                 .ToList();
 
@@ -69,6 +69,7 @@ namespace DBWebApp.Controllers
             }
         }
 
+        // Get api/<controller>/CreateHelpRequest/Au454545/1
         [HttpGet("CreateHelpRequest/{studentId}/{assignmentId}")]
         public string CreateHelpRequest(string studentId, int assignmentId)
         {

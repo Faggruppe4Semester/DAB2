@@ -1,3 +1,9 @@
+GroupNames:
+Thomas Carstensen – 201807833
+Markus Kristian Simonsen - 201808680
+Matias Tvorup - 201807748
+Frederik Vestergaard - 201708560
+
 Every creation has been added onto a HTTPGET-request, so testing can be done through a browser.
 In the following list of paths, the base-path ("localhost:<port>/api/[controller]/") should be added before the path, to perform the way we designed it.
 
@@ -21,6 +27,7 @@ UpdateOpen:		UpdateOpen/{Lecture}/{Number}/{active}
 
 [controller]: Teacher
 CreateTeacher: 		Create/{TeacherName}/{TeacherID}/{CourseID}
+PrintOpenHelpRequests:	/{TeacherID}/{CourseID}
 
 [controller]: Course
 GetAllCourses:		"Default-Path. Nothing extra should be added."
@@ -37,6 +44,8 @@ AddStudent:		AddStudent/{AssignmentID}/{studentID}
 
 [controller]: Student
 CreateStudent:		Create/{studentName}/{studentID}
-GetHelpRequestsFromId:	{id}
+GetHelpRequestsFromId:	{StudentID}
+CreateHelpRequest:	CreateHelpRequest/{studentID}/{assignmentId}
+UpdateHelpRequest:	UpdateHelpRequest/{studentId}/{assignmentId}/{status}
 AddCourse:		AddToCourse/{studentID}/{courseID}/{active}/{semester}
 
