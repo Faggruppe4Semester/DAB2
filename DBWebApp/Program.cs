@@ -70,16 +70,16 @@ namespace DBWebApp
                 db.Add(new StudentCourse() //Add a student to a course
                 {
                     Active = true,
-                    CourseID = course.CourseID,
+                    Course = course, 
                     Semester = 2,
-                    StudentAUID = student.AUID
+                    Student = student
                 });
 
                 db.Add(new StudentCourse() //Add another student to the same course
                 {
                     Active = true,
-                    CourseID = course.CourseID,
-                    StudentAUID = student2.AUID
+                    Course = course,
+                    Student = student2
                 });
 
                 db.SaveChanges();
@@ -139,8 +139,8 @@ namespace DBWebApp
 
                 var A1 = new Assignment()
                 {
-                    CourseID = course.CourseID,
-                    TeacherAUID = teacher1.AUID
+                    Course = course,
+                    Teacher = teacher1
                 };
 
                 db.Add(A1);
@@ -149,8 +149,8 @@ namespace DBWebApp
                 var A1Students = new HelpRequest()
                 {
                     Open = false,
-                    AssignmentID = A1.AssignmentID,
-                    StudentAUID = student.AUID
+                    Assignment = A1,
+                    Student = student
                 };
 
                 db.Add(A1Students);
@@ -158,8 +158,8 @@ namespace DBWebApp
                 var A1Students2 = new HelpRequest()
                 {
                     Open = true,
-                    AssignmentID = A1.AssignmentID,
-                    StudentAUID = student2.AUID
+                    Assignment = A1,
+                    Student = student2
                 };
 
                 db.Add(A1Students2);
