@@ -148,7 +148,7 @@ namespace DBWebApp
 
                 var A1Students = new HelpRequest()
                 {
-                    Open = true,
+                    Open = false,
                     AssignmentID = A1.AssignmentID,
                     StudentAUID = student.AUID
                 };
