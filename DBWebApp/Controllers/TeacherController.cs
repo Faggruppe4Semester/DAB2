@@ -54,11 +54,6 @@ namespace DBWebApp.Controllers
                 .Where(e => e.Open == true)
                 .ToList();
 
-            //var assignmentRequests = context.Assignments
-            //    .Where(a => a.CourseID == CourseID && a.TeacherAUID.ToUpper() == TeacherID.ToUpper())
-            //    .Include(a => a.HelpRequests)
-            //    .ToList();
-
             var assignmentRequests = context.HelpRequests
                 .Include(h => h.Assignment)
                 .Where(h => h.Open == true)
