@@ -54,11 +54,18 @@ namespace DBWebApp.Controllers
                 .Where(e => e.Open == true)
                 .ToList();
 
-            var assignmentRequests = context.Assignments
-                .Where(a => a.CourseID == CourseID && a.TeacherAUID.ToUpper() == TeacherID.ToUpper())
-                .Include(a => a.HelpRequests)
-                .ThenInclude(h => h.Open)
+            //var assignmentRequests = context.Assignments
+            //    .Where(a => a.CourseID == CourseID && a.TeacherAUID.ToUpper() == TeacherID.ToUpper())
+            //    .Include(a => a.HelpRequests)
+            //    .ToList();
+
+            var assignmentRequests = context.HelpRequests
+                .Include(h => h.Assignment)
+                .Where(h => h.Open == true)
+                .Where(h => h.Assignment.TeacherAUID == TeacherID)
+                .Where(h => h.Assignment.CourseID == CourseID)
                 .ToList();
+
 
             List<Object> allRequests = (from x in exerciseRequests select (Object)x).ToList();
             allRequests.AddRange((from x in assignmentRequests select (Object)x).ToList());
